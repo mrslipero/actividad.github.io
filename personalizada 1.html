@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Actividad 01</title>
+		<link rel="stylesheet" href=".\css\styles03.css" />
+	</head>
+	<body>
+		
+		<h1>Cineflix+</h1>
+		<p>Tenga el gusto de visualizar nuestra cartelera del dia de hoy</p>
+	
+		<table>
+			<tr class="head">
+				<th></th>
+				<th>Bogotá</th>
+				<th>Ibagué</th>
+				<th>Medellín</th>
+			</tr>
+			<tr>
+				<th>Avatar 3</th>
+				<td>Sab, 4 Feb 2023<br />11am - 2pm</td>
+				<td>Sab, 3 Mar 2023<br />11am - 2pm</td>
+				<td>Sab, 17 Mar 2023<br />11am - 2pm</td>
+			</tr>
+			<tr class="even">
+				<th>Como entrenar tu dragon 2</th>
+				<td>Sab, 7 Abr 2023<br />11am - 1pm</td>
+				<td>Sab, 5 May 2023<br />11am - 1pm</td>
+				<td>Sab, 19 May 2023<br />11am - 1pm</td>
+			</tr>
+			<tr>
+				<th>La bella y la bestia</th>
+				<td>Sab, 9 Jun 2023<br />11am - 2pm</td>
+				<td>Sab, 7 Jul 2023<br />11am - 2pm</td>
+				<td>Sab, 21 Jul 2023<br />11am - 2pm</td>
+			</tr>
+			<tr class="even">
+				<th>Deadpool 2</th>
+				<td>Sat, 4 Ago 2023<br />11am - 4pm</td>
+				<td>Sat, 8 Sep 2023<br />11am - 4pm</td>
+				<td>Sat, 15 Sep 2023<br />11am - 4pm</td>
+			</tr>
+		</table>
+		<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cine Virtual</title>
+    <style>
+        /* Estilos CSS aquí */
+        .screen {
+            width: 60%;
+            height: 250px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            border: 2px solid white;
+        }
+
+        .seat {
+			display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: rgb(6, 97, 6);
+            margin: 5px;
+            cursor: pointer;
+			
+        }
+		#seating-area{
+			margin: auto;
+		} 
+		body{
+			width: 100%;
+
+		}
+    </style>
+</head>
+<body>
+    <h1>Seleccione una Película</h1>
+    <form>
+        <label for="movie">Película:</label>
+        <select id="movie" name="movie">
+            <option value="pelicula1">Avatar 3</option>
+            <option value="pelicula2">Como entrenar tu dragon 2</option>
+            <option value="pelicula3">La bella y la bestia</option>
+            <option value="pelicula4">Deadpool 2</option>
+        </select>
+    </form>
+
+    <h2>Asientos Disponibles</h2>
+    <div class="screen">Pantalla</div>
+    <div id="seating-area">
+        <!-- Los asientos se generan dinámicamente con JavaScript -->
+    </div>
+
+    <script>
+        const seatingArea = document.getElementById("seating-area");
+        const movieSelect = document.getElementById("movie");
+        
+        // Crea los asientos en el área de selección
+        function crearAsientos(filas, columnas) {
+            for (let i = 1; i <= filas; i++) {
+                for (let j = 1; j <= columnas; j++) {
+                    const seat = document.createElement("div");
+                    seat.className = "seat";
+                    seat.textContent = `${i}-${j}`;
+                    seat.addEventListener("click", () => reservarAsiento(seat));
+                    seatingArea.appendChild(seat);
+                }
+                seatingArea.appendChild(document.createElement("br"));
+            }
+        }
+
+        // Función para reservar un asiento
+        function reservarAsiento(asiento) {
+            if (asiento.classList.contains("selected")) {
+                alert("Este asiento ya está seleccionado.");
+            } else {
+                asiento.classList.add("selected");
+                alert(`Asiento ${asiento.textContent} seleccionado.`);
+            }
+        }
+
+        // Evento que se activa al cambiar la película seleccionada
+        movieSelect.addEventListener("change", () => {
+            // Limpia el área de selección
+            seatingArea.innerHTML = "";
+            // Genera asientos basados en la película seleccionada (puedes personalizar esto)
+            crearAsientos(5, 10); // Por ejemplo, 5 filas y 10 columnas
+        });
+
+        // Inicializa con la película seleccionada
+        crearAsientos(5, 10); // Por defecto, inicia con 5 filas y 10 columnas
+    </script>
+</body>
+</html>
+
+	
+	</style>
+    <script>
+        function mostrarMensaje() {
+            var tieneTarjeta = document.querySelector('input[name="member"]:checked').value === "si";
+            var mensaje = "Se ha enviado su recibo de pago a su correo electrónico.";
+            
+            if (tieneTarjeta) {
+                mensaje += " También se ha aplicado un descuento del 20% de la compra. ¡Gracias!";
+            }
+            
+            alert(mensaje);
+        }
+    </script>
+</head>
+<body>
+    <form action="actividad_02.html" method="get" onsubmit="mostrarMensaje();">
+        <fieldset>
+            <legend>Ingrese sus datos para la película seleccionada:</legend>
+            <p>
+                <label class="title" for="name">Su Nombre:</label>
+                <input type="text" name="name" id="name"><br />
+            </p>
+            <p>
+                <label class="title" for="email">Su correo:</label>
+                <input type="text" name="email" id="email"><br />
+            </p>
+            <p>
+                <label for="payment" class="title">Método de Pago:</label>
+                <select name="payment" id="payment">
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">MasterCard</option>
+                    <option value="amex">American Express</option>
+                </select>
+            </p>
+            <p>
+                <label class="title" for="credit-card">Número de Tarjeta:</label>
+                <input type="text" name="credit-card" id="credit-card" pattern="[0-9]{1,20}" maxlength="20" required><br />
+            </p>
+            <p>
+                <label for="credit-card-security">Código de seguridad de la tarjeta:</label>
+                <input type="number" id="credit-card-security" required min="0" inputmode="numeric"><br>
+            </p>
+            <p>
+                <label for="credit-card-expiry">Fecha de vencimiento de la tarjeta:</label>
+                <input type="date" id="credit-card-expiry" required><br>
+            </p>
+            <p>
+                <span class="title">¿Cuenta con tarjeta Cineflix+?</span>
+                <label><input type="radio" name="member" value="si" /> Sí</label>
+                <label><input type="radio" name="member" value="no" /> No</label>
+            </p>
+        </fieldset>
+        <div class="submit"><input type="submit" value="Enviar" /></div>
+    </form>
+		
+	</body>
+</html>
